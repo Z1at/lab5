@@ -12,7 +12,7 @@ public class FieldReceiver {
     public static String getName(){
         while(true) {
             System.out.println(TextFormatting.getGreenText("Enter the name of the city: "));
-            String[] name = scanner.nextLine().strip().split(" ");
+            String[] name = scanner.nextLine().trim().split(" ");
             if (name.length == 1 & !name[0].contains(",")) {
                 return name[0];
             }
@@ -23,7 +23,7 @@ public class FieldReceiver {
     public static Coordinates getCoordinates(){
         System.out.println(TextFormatting.getGreenText("Enter the coordinates if the city: "));
         while(true){
-            String [] string = scanner.nextLine().strip().split(" ");
+            String [] string = scanner.nextLine().trim().split(" ");
             if(string.length == 2) {
                 try {
                     return new Coordinates(Float.parseFloat(string[0]), Long.parseLong(string[1]));
@@ -39,7 +39,7 @@ public class FieldReceiver {
     public static double getArea(){
         System.out.println(TextFormatting.getGreenText("Enter the area of the city: "));
         while (true){
-            String [] string = scanner.nextLine().strip().split(" ");
+            String [] string = scanner.nextLine().trim().split(" ");
             if(string.length == 1){
                 try{
                     double number = Double.parseDouble(string[0]);
@@ -56,7 +56,7 @@ public class FieldReceiver {
     public static Long getPopulation(){
         System.out.println(TextFormatting.getGreenText("Enter the population of the city: "));
         while(true){
-            String [] string = scanner.nextLine().strip().split(" ");
+            String [] string = scanner.nextLine().trim().split(" ");
             if(string.length == 1){
                 try{
                     long number = Long.parseLong(string[0]);
@@ -73,7 +73,7 @@ public class FieldReceiver {
     public static Integer getMetersAboveSeaLevel() {
         System.out.println(TextFormatting.getGreenText("Enter the meters above sea level: "));
         while(true){
-            String [] string = scanner.nextLine().strip().split(" ");
+            String [] string = scanner.nextLine().trim().split(" ");
             if(string.length == 1){
                 try{
                     return Integer.parseInt(string[0]);
@@ -90,7 +90,7 @@ public class FieldReceiver {
         while(true){
             System.out.println(TextFormatting.getGreenText("Choose the climate of the city: "));
             for(Climate climate : Climate.values()){
-                System.out.println(climate);
+                System.out.println(TextFormatting.getYellowText(String.valueOf(climate)));
             }
             String string = scanner.nextLine().toUpperCase();
             if(Climate.isPresent(string)){
@@ -104,7 +104,7 @@ public class FieldReceiver {
         while(true){
             System.out.println(TextFormatting.getGreenText("Choose the government of the city: "));
             for(Government government : Government.values()){
-                System.out.println(government);
+                System.out.println(TextFormatting.getYellowText(String.valueOf(government)));
             }
             String string = scanner.nextLine().toUpperCase();
             if(Government.isPresent(string)){
@@ -118,7 +118,7 @@ public class FieldReceiver {
         while(true){
             System.out.println(TextFormatting.getGreenText("Choose the standard of living of the city: "));
             for(StandardOfLiving standardOfLiving : StandardOfLiving.values()){
-                System.out.println(standardOfLiving);
+                System.out.println(TextFormatting.getYellowText(String.valueOf(standardOfLiving)));
             }
             String string = scanner.nextLine().toUpperCase();
             if(StandardOfLiving.isPresent(string)){
@@ -132,7 +132,7 @@ public class FieldReceiver {
         String name;
         System.out.println(TextFormatting.getGreenText("Enter the name of the governor: "));
         while(true) {
-            String[] string = scanner.nextLine().toLowerCase().strip().split(" ");
+            String[] string = scanner.nextLine().toLowerCase().trim().split(" ");
             if(string.length == 1 & !string[0].contains(",")){
                 name = string[0];
                 break;
@@ -141,7 +141,7 @@ public class FieldReceiver {
         }
         System.out.println(TextFormatting.getGreenText("Enter the height of governor: "));
         while(true) {
-            String [] string = scanner.nextLine().strip().split(" ");
+            String [] string = scanner.nextLine().trim().split(" ");
             if(string.length == 1){
                 try{
                     double number = Double.parseDouble(string[0]);

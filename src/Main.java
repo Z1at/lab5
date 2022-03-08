@@ -1,6 +1,5 @@
 import commands.Operations;
 import utility.Collection;
-
 import java.util.Scanner;
 
 /**
@@ -12,7 +11,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String[] command;
         do {
-            command = scanner.nextLine().toLowerCase().strip().split(" ");
+            command = scanner.nextLine().toLowerCase().trim().split(" ");
         } while (!Operations.run(command, collection));
         scanner.close();
     }

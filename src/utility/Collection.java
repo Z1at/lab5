@@ -31,6 +31,7 @@ public class Collection {
     public void show(){
         if(collection.size() == 0){
             System.out.println(TextFormatting.getGreenText("Collection is empty"));
+            System.out.println();
         }
         else {
             System.out.println(TextFormatting.getGreenText("All elements of the collection:"));
@@ -80,55 +81,64 @@ public class Collection {
             System.out.println(TextFormatting.getGreenText("Enter the name of the field you want to change, " +
                     "Or type 'complete' if you want to complete the operations"));
             while (true) {
-                String[] string = scanner.nextLine().strip().split(" ");
+                String[] string = scanner.nextLine().trim().split(" ");
                 StringBuilder concatenation = new StringBuilder();
                 for (String s : string) {
                     concatenation.append(s);
                 }
                 boolean f = false;
                 switch (concatenation.toString()) {
-                    case "name" -> {
+                    case "name": {
                         String name = FieldReceiver.getName();
                         collection.get(copyKey).setName(name);
+                        break;
                     }
-                    case "coordinates" -> {
+                    case "coordinates": {
                         Coordinates coordinates = FieldReceiver.getCoordinates();
                         collection.get(copyKey).setCoordinates(coordinates);
+                        break;
                     }
-                    case "area" -> {
+                    case "area": {
                         double area = FieldReceiver.getArea();
                         collection.get(copyKey).setArea(area);
+                        break;
                     }
-                    case "population" -> {
+                    case "population": {
                         Long population = FieldReceiver.getPopulation();
                         collection.get(copyKey).setPopulation(population);
+                        break;
                     }
-                    case "metersabvovesealevel" -> {
+                    case "metersabvovesealevel": {
                         Integer metersAboveSeaLevel = FieldReceiver.getMetersAboveSeaLevel();
                         collection.get(copyKey).setMetersAboveSeaLevel(metersAboveSeaLevel);
+                        break;
                     }
-                    case "climate" -> {
+                    case "climate": {
                         Climate climate = FieldReceiver.getClimate();
                         collection.get(copyKey).setClimate(climate);
+                        break;
                     }
-                    case "government" -> {
+                    case "government": {
                         Government government = FieldReceiver.getGovernment();
                         collection.get(copyKey).setGovernment(government);
+                        break;
                     }
-                    case "standardofliving" -> {
+                    case "standardofliving": {
                         StandardOfLiving standardOfLiving = FieldReceiver.getStandardOfLiving();
                         collection.get(copyKey).setStandardOfLiving(standardOfLiving);
+                        break;
                     }
-                    case "governor" -> {
+                    case "governor": {
                         Human governor = FieldReceiver.getGovernor();
                         collection.get(copyKey).setGovernor(governor);
+                        break;
                     }
-                    case "complete" -> {
+                    case "complete": {
                         System.out.println(TextFormatting.getGreenText("You have exited the method of adding elements"));
                         System.out.println();
                         return;
                     }
-                    default -> f = true;
+                    default: f = true;
                 }
                 if(f){
                     System.out.println(TextFormatting.getRedText("There is no such field, enter again:"));
@@ -195,7 +205,7 @@ public class Collection {
             while (file.ready()) {
                 char c = (char) file.read();
                 if (c == '\n') {
-                    concatenation = string.toLowerCase().strip().split(" ");
+                    concatenation = string.toLowerCase().trim().split(" ");
                     if(concatenation[0].equals("insert") & concatenation.length == 2){
                         if(!concatenation[1].contains(",")) {
                             FileOutput.insert(collection, concatenation[1], file);
@@ -217,7 +227,7 @@ public class Collection {
                     string += String.valueOf(c);
                 }
             }
-            Operations.run(string.toLowerCase().strip().split(" "), collection);
+            Operations.run(string.toLowerCase().trim().split(" "), collection);
             System.out.println(TextFormatting.getGreenText("All commands were executed"));
             file.close();
         } catch (IOException e) {

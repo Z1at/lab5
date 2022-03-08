@@ -46,68 +46,77 @@ public class FileOutput {
         }
         if(!copyKey.equals("")){
             while (file.ready()) {
-                String[] string = getLine(file).toLowerCase().strip().split(" ");
+                String[] string = getLine(file).toLowerCase().trim().split(" ");
                 StringBuilder concatenation = new StringBuilder();
                 for(String temporary : string){
                     concatenation.append(temporary);
                 }
 
                 switch (concatenation.toString()){
-                    case "name" -> {
+                    case "name": {
                         String name = FieldReceiverForFile.getName(file);
                         if(name != null) {
                             collection.get(copyKey).setName(name);
                         }
+                        break;
                     }
-                    case "coordinates" -> {
+                    case "coordinates": {
                         Coordinates coordinates = FieldReceiverForFile.getCoordinates(file);
                         if(coordinates.getY() != -1){
                             collection.get(copyKey).setCoordinates(coordinates);
                         }
+                        break;
                     }
-                    case "area" -> {
+                    case "area": {
                         double area = FieldReceiverForFile.getArea(file);
                         if(area > 0){
                             collection.get(copyKey).setArea(area);
                         }
+                        break;
                     }
-                    case "population" -> {
+                    case "population": {
                         Long population = FieldReceiverForFile.getPopulation(file);
                         if(population > 0){
                             collection.get(copyKey).setPopulation(population);
                         }
+                        break;
                     }
-                    case "metersabvovesealevel" -> {
+                    case "metersabvovesealevel": {
                         Integer metersAboveSeaLevel = FieldReceiverForFile.getMetersAboveSeaLevel(file);
                         if(metersAboveSeaLevel != null){
                             collection.get(copyKey).setMetersAboveSeaLevel(metersAboveSeaLevel);
                         }
+                        break;
                     }
-                    case "climate" -> {
+                    case "climate": {
                         Climate climate = FieldReceiverForFile.getClimate(file);
                         if(climate != null){
                             collection.get(copyKey).setClimate(climate);
                         }
+                        break;
                     }
-                    case "government" -> {
+                    case "government": {
                         Government government = FieldReceiverForFile.getGovernment(file);
                         if(government != null){
                             collection.get(copyKey).setGovernment(government);
                         }
+                        break;
                     }
-                    case "standardofliving" -> {
+                    case "standardofliving": {
                         StandardOfLiving standardOfLiving = FieldReceiverForFile.getStandardOfLiving(file);
                         if(standardOfLiving != null){
                             collection.get(copyKey).setStandardOfLiving(standardOfLiving);
                         }
+                        break;
                     }
-                    case "governor" -> {
+                    case "governor": {
                         Human governor = FieldReceiverForFile.getGovernor(file);
                         if(governor != null){
                             collection.get(copyKey).setGovernor(governor);
                         }
+                        break;
                     }
-                    case "complete" -> {
+                    case "complete": {
                         return;
                     }
                 }
