@@ -197,6 +197,32 @@ public class Collection {
         System.out.println();
     }
 
+    public void check(String[] concatenation, Collection collection, String path, FileReader file) {
+        if(concatenation[0].equals("insert") & concatenation.length == 2){
+            try {
+                if (!concatenation[1].contains(",")) {
+                    FileOutput.insert(collection, concatenation[1], file);
+                }
+            }
+            catch (IOException ignored){
+
+            }
+        }
+        else if(concatenation[0].equals("update") & concatenation.length == 2){
+            try {
+                FileOutput.updateId(collection.collection, Integer.parseInt(concatenation[1]), file);
+            } catch (NumberFormatException | IOException ignored) {
+
+            }
+        }
+        else if(!concatenation[0].equals("execute_script")){
+            Operations.run(concatenation, collection);
+        }
+        else if(concatenation.length == 2 & !concatenation[1].equals(path)){
+            Operations.run(concatenation, collection);
+        }
+    }
+
     public void executeScript(String path, Collection collection) {
         try {
             FileReader file = new FileReader(path);
@@ -206,28 +232,14 @@ public class Collection {
                 char c = (char) file.read();
                 if (c == '\n') {
                     concatenation = string.toLowerCase().trim().split(" ");
-                    if(concatenation[0].equals("insert") & concatenation.length == 2){
-                        if(!concatenation[1].contains(",")) {
-                            FileOutput.insert(collection, concatenation[1], file);
-                        }
-                    }
-                    else if(concatenation[0].equals("update") & concatenation.length == 2){
-                        try {
-                            FileOutput.updateId(collection.collection, Integer.parseInt(concatenation[1]), file);
-                        } catch (NumberFormatException ignored) {
-
-                        }
-                    }
-                    else{
-                        Operations.run(concatenation, collection);
-                    }
+                    check(concatenation, collection, path, file);
                     string = "";
                 }
                 else {
                     string += String.valueOf(c);
                 }
             }
-            Operations.run(string.toLowerCase().trim().split(" "), collection);
+            check(string.toLowerCase().trim().split(" "), collection, path, file);
             System.out.println(TextFormatting.getGreenText("All commands were executed"));
             file.close();
         } catch (IOException e) {
